@@ -13,8 +13,6 @@ local CoreGui = (gethui and gethui()) or game:GetService("CoreGui");
 local redzlib = {
 	Themes = {
 		Darker = {
-			["Color Hub 1"] = ColorSequence.new({
-		Darker = {
     ["Color Hub 1"] = ColorSequence.new({
         ColorSequenceKeypoint.new(0.00, Color3.fromRGB(12, 12, 17)),     -- Preto profundo e frio
         ColorSequenceKeypoint.new(0.48, Color3.fromRGB(22, 22, 29)),     -- Meio suave com profundidade
