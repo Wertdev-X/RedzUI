@@ -14,16 +14,23 @@ local redzlib = {
 	Themes = {
 		Darker = {
 			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(23, 23, 23)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(71, 71, 67)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(23, 23, 23))
-			}),
-			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
-			["Color Stroke"] = Color3.fromRGB(23, 23, 23),
-			["Color Theme"] = Color3.fromRGB(63, 204, 94),
-			["Color Text"] = Color3.fromRGB(243, 243, 243),
-			["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
-		},
+		Darker = {
+    ["Color Hub 1"] = ColorSequence.new({
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(12, 12, 17)),     -- Preto profundo e frio
+        ColorSequenceKeypoint.new(0.48, Color3.fromRGB(22, 22, 29)),     -- Meio suave com profundidade
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(12, 12, 17))
+    }),
+    
+    ["Color Hub 2"] = Color3.fromRGB(16, 16, 22),                        -- Fundo secundário refinado
+    
+    ["Color Stroke"] = Color3.fromRGB(135, 145, 255),                    -- Roxo-azulado neon elegante
+    
+    ["Color Theme"] = Color3.fromRGB(100, 130, 255),                     -- Azul-roxo vibrante e bonito
+    
+    ["Color Text"] = Color3.fromRGB(248, 248, 255),                      -- Branco gelado com excelente contraste
+    
+    ["Color Dark Text"] = Color3.fromRGB(175, 180, 215)                  -- Roxo claro suave e legível
+},
 		Dark = {
 			["Color Hub 1"] = ColorSequence.new({
 				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(40, 40, 40)),
