@@ -95,7 +95,7 @@ CyberFrost = {
 	Save = {
 		UISize = {550, 380},
 		TabSize = 160,
-		Theme = "CyberFrost"
+		Theme = "CrimsonAbyss"
 	},
 	Settings = {},
 	Connection = {},
