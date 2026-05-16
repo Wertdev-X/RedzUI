@@ -81,7 +81,7 @@ CyberFrost = {
 		Version = "1.1.0"
 	},
 	Save = {
-		UISize = {452,245},
+		UISize = {474,247},
 		TabSize = 160,
 		Theme = "Darker"
 	},
