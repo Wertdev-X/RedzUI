@@ -1,3 +1,5 @@
+-- Redz ui library V2 By WertDev 
+
 local MarketplaceService = game:GetService("MarketplaceService")
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -13,34 +15,55 @@ local CoreGui = (gethui and gethui()) or game:GetService("CoreGui");
 local redzlib = {
 	Themes = {
 		Darker = {
+			["Color Hub 1"] = ColorSequence.new({
+				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(16, 16, 16)),
+				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(42, 42, 42)),
+				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(16, 16, 16))
+			}),
+			["Color Hub 2"] = Color3.fromRGB(16, 16, 16),
+			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
+			["Color Theme"] = Color3.fromRGB(88, 242, 137),
+			["Color Text"] = Color3.fromRGB(243, 243, 243),
+			["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
+		},
+		
+	VoidEclipse = {
     ["Color Hub 1"] = ColorSequence.new({
-        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(12, 12, 17)),     -- Preto profundo e frio
-        ColorSequenceKeypoint.new(0.48, Color3.fromRGB(22, 22, 29)),     -- Meio suave com profundidade
-        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(12, 12, 17))
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(10, 8, 18)),      
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(18, 15, 32)),     
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(10, 8, 18))
     }),
     
-    ["Color Hub 2"] = Color3.fromRGB(16, 16, 22),                        -- Fundo secundário refinado
-    
-    ["Color Stroke"] = Color3.fromRGB(55, 56, 61),                    -- Roxo-azulado neon elegante
-    
-    ["Color Theme"] = Color3.fromRGB(100, 130, 255),                     -- Azul-roxo vibrante e bonito
-    
-    ["Color Text"] = Color3.fromRGB(248, 248, 255),                      -- Branco gelado com excelente contraste
-    
-    ["Color Dark Text"] = Color3.fromRGB(175, 180, 215)                  -- Roxo claro suave e legível
+    ["Color Hub 2"] = Color3.fromRGB(14, 12, 26),                        
+    ["Color Stroke"] = Color3.fromRGB(140, 80, 255),                     
+    ["Color Theme"] = Color3.fromRGB(170, 100, 255),                     
+    ["Color Text"] = Color3.fromRGB(245, 245, 255),                      
+    ["Color Dark Text"] = Color3.fromRGB(170, 160, 210)                  
 },
-		Dark = {
-			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(40, 40, 40)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(47.5, 47.5, 47.5)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(40, 40, 40))
-			}),
-			["Color Hub 2"] = Color3.fromRGB(45, 45, 45),
-			["Color Stroke"] = Color3.fromRGB(65, 65, 65),
-			["Color Theme"] = Color3.fromRGB(65, 150, 255),
-			["Color Text"] = Color3.fromRGB(245, 245, 245),
-			["Color Dark Text"] = Color3.fromRGB(190, 190, 190)
-		},
+CrimsonAbyss = {
+    ["Color Hub 1"] = ColorSequence.new({
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(18, 6, 8)),
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(35, 10, 15)),
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(18, 6, 8))
+    }),
+    ["Color Hub 2"] = Color3.fromRGB(28, 8, 12),
+    ["Color Stroke"] = Color3.fromRGB(255, 70, 80),
+    ["Color Theme"] = Color3.fromRGB(220, 40, 60),
+    ["Color Text"] = Color3.fromRGB(255, 235, 235),
+    ["Color Dark Text"] = Color3.fromRGB(190, 120, 130)
+},
+CyberFrost = {
+    ["Color Hub 1"] = ColorSequence.new({
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(8, 12, 22)),
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(15, 25, 45)),
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(8, 12, 22))
+    }),
+    ["Color Hub 2"] = Color3.fromRGB(10, 18, 35),
+    ["Color Stroke"] = Color3.fromRGB(0, 220, 255),
+    ["Color Theme"] = Color3.fromRGB(80, 230, 255),
+    ["Color Text"] = Color3.fromRGB(230, 245, 255),
+    ["Color Dark Text"] = Color3.fromRGB(140, 190, 220)
+},
 		Purple = {
 			["Color Hub 1"] = ColorSequence.new({
 				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(27.5, 25, 30)),
@@ -60,7 +83,7 @@ local redzlib = {
 	Save = {
 		UISize = {550, 380},
 		TabSize = 160,
-		Theme = "Purple"
+		Theme = "Darker"
 	},
 	Settings = {},
 	Connection = {},
@@ -958,7 +981,7 @@ local SetProps, SetChildren, InsertTheme, Create do
 		end
 	end
 	
-	pcall(Save, "redz library V5.json")
+	pcall(Save, "Vense ui library.json")
 end
 
 local Funcs = {} do
@@ -1211,7 +1234,7 @@ end
 
 AddEle("Corner", function(parent, CornerRadius)
 	local New = SetProps(Create("UICorner", parent, {
-		CornerRadius = CornerRadius or UDim.new(0, 7)
+		CornerRadius = CornerRadius or UDim.new(0, 10)
 	}), props)
 	return New
 end)
@@ -2673,7 +2696,7 @@ function redzlib:MakeWindow(Configs)
 				Size = UDim2.new(1, -14, 0, 16),
 				AnchorPoint = Vector2.new(0.5, 1),
 				Position = UDim2.new(0.5, 0, 1, -7),
-				Text = "Join",
+				Text = "Join Server",
 				Font = Enum.Font.GothamBold,
 				TextSize = 12,
 				TextColor3 = Color3.fromRGB(220, 220, 220),
@@ -2687,12 +2710,12 @@ function redzlib:MakeWindow(Configs)
 				
 				ClickDelay = true
 				SetProps(JoinButton, {
-					Text = "Copied to Clipboard",
+					Text = "Copied to Clipboard!",
 					BackgroundColor3 = Color3.fromRGB(100, 100, 100),
 					TextColor3 = Color3.fromRGB(150, 150, 150)
 				})task.wait(5)
 				SetProps(JoinButton, {
-					Text = "Join",
+					Text = "Join Server",
 					BackgroundColor3 = Color3.fromRGB(50, 150, 50),
 					TextColor3 = Color3.fromRGB(220, 220, 220)
 				})ClickDelay = false
