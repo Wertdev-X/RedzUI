@@ -1,4 +1,4 @@
--- Redz ui library V2 By WertDev 
+-- Redz ui library V5 By WertDev 
 
 local MarketplaceService = game:GetService("MarketplaceService")
 local UserInputService = game:GetService("UserInputService")
@@ -16,9 +16,9 @@ local redzlib = {
 	Themes = {
 		Darker = {
 			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(16, 16, 16)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(42, 42, 42)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(16, 16, 16))
+				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)),        -- Preto Puro (Borda esquerda)
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(18, 42, 15)),     -- Green da Meia-Noite Profundo (Centro)
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))         -- Preto Puro (Borda direita)
 			}),
 			["Color Hub 2"] = Color3.fromRGB(16, 16, 16),
 			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
@@ -27,43 +27,6 @@ local redzlib = {
 			["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
 		},
 		
-	VoidEclipse = {
-    ["Color Hub 1"] = ColorSequence.new({
-        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(10, 8, 18)),      
-        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(18, 15, 32)),     
-        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(10, 8, 18))
-    }),
-    
-    ["Color Hub 2"] = Color3.fromRGB(14, 12, 26),                        
-    ["Color Stroke"] = Color3.fromRGB(140, 80, 255),                     
-    ["Color Theme"] = Color3.fromRGB(170, 100, 255),                     
-    ["Color Text"] = Color3.fromRGB(245, 245, 255),                      
-    ["Color Dark Text"] = Color3.fromRGB(170, 160, 210)                  
-},
-CrimsonAbyss = {
-    ["Color Hub 1"] = ColorSequence.new({
-        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(18, 6, 8)),
-        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(35, 10, 15)),
-        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(18, 6, 8))
-    }),
-    ["Color Hub 2"] = Color3.fromRGB(28, 8, 12),
-    ["Color Stroke"] = Color3.fromRGB(255, 70, 80),
-    ["Color Theme"] = Color3.fromRGB(220, 40, 60),
-    ["Color Text"] = Color3.fromRGB(255, 235, 235),
-    ["Color Dark Text"] = Color3.fromRGB(190, 120, 130)
-},
-CyberFrost = {
-    ["Color Hub 1"] = ColorSequence.new({
-        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(8, 12, 22)),
-        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(15, 25, 45)),
-        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(8, 12, 22))
-    }),
-    ["Color Hub 2"] = Color3.fromRGB(10, 18, 35),
-    ["Color Stroke"] = Color3.fromRGB(0, 220, 255),
-    ["Color Theme"] = Color3.fromRGB(80, 230, 255),
-    ["Color Text"] = Color3.fromRGB(230, 245, 255),
-    ["Color Dark Text"] = Color3.fromRGB(140, 190, 220)
-},
 		Purple = {
 			["Color Hub 1"] = ColorSequence.new({
 				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(27.5, 25, 30)),
@@ -81,7 +44,7 @@ CyberFrost = {
 		Version = "1.1.0"
 	},
 	Save = {
-		UISize = {474,247},
+		UISize = {479,241},
 		TabSize = 160,
 		Theme = "Darker"
 	},
@@ -981,7 +944,7 @@ local SetProps, SetChildren, InsertTheme, Create do
 		end
 	end
 	
-	pcall(Save, "Vense ui library.json")
+	pcall(Save, "vense library V5.json")
 end
 
 local Funcs = {} do
@@ -1123,7 +1086,7 @@ local GetFlag, SetFlag, CheckFlag do
 end
 
 local ScreenGui = Create("ScreenGui", CoreGui, {
-	Name = "Vense-library-v3",
+	Name = "vense-library-v5",
 }, {
 	Create("UIScale", {
 		Scale = UIScale,
@@ -1234,7 +1197,7 @@ end
 
 AddEle("Corner", function(parent, CornerRadius)
 	local New = SetProps(Create("UICorner", parent, {
-		CornerRadius = CornerRadius or UDim.new(0, 10)
+		CornerRadius = CornerRadius or UDim.new(0, 5)
 	}), props)
 	return New
 end)
@@ -1402,7 +1365,7 @@ function redzlib:SetTheme(NewTheme)
 	if not VerifyTheme(NewTheme) then return end
 	
 	redzlib.Save.Theme = NewTheme
-	SaveJson("Vense ui library.json", redzlib.Save)
+	SaveJson("vense library V5.json", redzlib.Save)
 	Theme = redzlib.Themes[NewTheme]
 	
 	Comnection:FireConnection("ThemeChanged", NewTheme)
@@ -1572,13 +1535,13 @@ function redzlib:MakeWindow(Configs)
 	ConnectSave(ControlSize1, function()
 		if not Minimized then
 			redzlib.Save.UISize = {MainFrame.Size.X.Offset, MainFrame.Size.Y.Offset}
-			SaveJson("Vense ui library.json", redzlib.Save)
+			SaveJson("vense library V5.json", redzlib.Save)
 		end
 	end)
 	
 	ConnectSave(ControlSize2, function()
 		redzlib.Save.TabSize = MainScroll.Size.X.Offset
-		SaveJson("Vense ui library.json", redzlib.Save)
+		SaveJson("vense library V5.json", redzlib.Save)
 	end)
 	
 	local ButtonsFolder = Create("Folder", TopBar, {
@@ -1611,12 +1574,12 @@ function redzlib:MakeWindow(Configs)
 	function Window:CloseBtn()
 		local Dialog = Window:Dialog({
 			Title = "Close",
-			Text = "You Want Close Ui Library?",
+			Text = "You Want Close Vense Hub?",
 			Options = {
-				{"Yes", function()
+				{"Confirm", function()
 					ScreenGui:Destroy()
 				end},
-				{"No"}
+				{"Cancel"}
 			}
 		})
 	end
@@ -2632,100 +2595,128 @@ function redzlib:MakeWindow(Configs)
 			return TextBox
 		end
 		function Tab:AddDiscordInvite(Configs)
-			local Title = Configs[1] or Configs.Name or Configs.Title or "Discord"
-			local Desc = Configs.Desc or Configs.Description or ""
-			local Logo = Configs[2] or Configs.Logo or ""
-			local Invite = Configs[3] or Configs.Invite or ""
-			
-			local InviteHolder = Create("Frame", Container, {
-				Size = UDim2.new(1, 0, 0, 80),
-				Name = "Option",
-				BackgroundTransparency = 1
-			})
-			
-			local InviteLabel = Create("TextLabel", InviteHolder, {
-				Size = UDim2.new(1, 0, 0, 15),
-				Position = UDim2.new(0, 5),
-				TextColor3 = Color3.fromRGB(40, 150, 255),
-				Font = Enum.Font.GothamBold,
-				TextXAlignment = "Left",
-				BackgroundTransparency = 1,
-				TextSize = 10,
-				Text = Invite
-			})
-			
-			local FrameHolder = InsertTheme(Create("Frame", InviteHolder, {
-				Size = UDim2.new(1, 0, 0, 65),
-				AnchorPoint = Vector2.new(0, 1),
-				Position = UDim2.new(0, 0, 1),
-				BackgroundColor3 = Theme["Color Hub 2"]
-			}), "Frame")Make("Corner", FrameHolder)
-			
-			local ImageLabel = Create("ImageLabel", FrameHolder, {
-				Size = UDim2.new(0, 30, 0, 30),
-				Position = UDim2.new(0, 7, 0, 7),
-				Image = Logo,
-				BackgroundTransparency = 1
-			})Make("Corner", ImageLabel, UDim.new(0, 4))Make("Stroke", ImageLabel)
-			
-			local LTitle = InsertTheme(Create("TextLabel", FrameHolder, {
-				Size = UDim2.new(1, -52, 0, 15),
-				Position = UDim2.new(0, 44, 0, 7),
-				Font = Enum.Font.GothamBold,
-				TextColor3 = Theme["Color Text"],
-				TextXAlignment = "Left",
-				BackgroundTransparency = 1,
-				TextSize = 10,
-				Text = Title
-			}), "Text")
-			
-			local LDesc = InsertTheme(Create("TextLabel", FrameHolder, {
-				Size = UDim2.new(1, -52, 0, 0),
-				Position = UDim2.new(0, 44, 0, 22),
-				TextWrapped = "Y",
-				AutomaticSize = "Y",
-				Font = Enum.Font.Gotham,
-				TextColor3 = Theme["Color Dark Text"],
-				TextXAlignment = "Left",
-				BackgroundTransparency = 1,
-				TextSize = 8,
-				Text = Desc
-			}), "DarkText")
-			
-			local JoinButton = Create("TextButton", FrameHolder, {
-				Size = UDim2.new(1, -14, 0, 16),
-				AnchorPoint = Vector2.new(0.5, 1),
-				Position = UDim2.new(0.5, 0, 1, -7),
-				Text = "Join Server",
-				Font = Enum.Font.GothamBold,
-				TextSize = 12,
-				TextColor3 = Color3.fromRGB(220, 220, 220),
-				BackgroundColor3 = Color3.fromRGB(50, 150, 50)
-			})Make("Corner", JoinButton, UDim.new(0, 5))
-			
-			local ClickDelay
-			JoinButton.Activated:Connect(function()
-				setclipboard(Invite)
-				if ClickDelay then return end
-				
-				ClickDelay = true
-				SetProps(JoinButton, {
-					Text = "Copied to Clipboard!",
-					BackgroundColor3 = Color3.fromRGB(100, 100, 100),
-					TextColor3 = Color3.fromRGB(150, 150, 150)
-				})task.wait(5)
-				SetProps(JoinButton, {
-					Text = "Join Server",
-					BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-					TextColor3 = Color3.fromRGB(220, 220, 220)
-				})ClickDelay = false
-			end)
-			
-			local DiscordInvite = {}
-			function DiscordInvite:Destroy() InviteHolder:Destroy() end
-			function DiscordInvite:Visible(...) Funcs:ToggleVisible(InviteHolder, ...) end
-			return DiscordInvite
-		end
+    local TweenService = game:GetService("TweenService")
+    
+    local Title = Configs[1] or Configs.Name or Configs.Title or "Discord Server"
+    local Desc = Configs.Desc or Configs.Description or "Join our community to get updates!"
+    local Logo = Configs[2] or Configs.Logo or "rbxassetid://15243132148" -- ID Padrão do Logo do Discord se faltar
+    local Invite = Configs[3] or Configs.Invite or "https://discord.gg/vensehub"
+    
+    -- Holder Principal
+    local InviteHolder = Create("Frame", Container, {
+        Size = UDim2.new(1, 0, 0, 85), -- Aumentado levemente para respirar o layout
+        Name = "DiscordInviteOption",
+        BackgroundTransparency = 1
+    })
+    
+    -- Texto com o Link do Invite no topo (Cor Glacial Nord)
+    local InviteLabel = Create("TextLabel", InviteHolder, {
+        Size = UDim2.new(1, 0, 0, 15),
+        Position = UDim2.new(0, 5, 0, 0),
+        TextColor3 = Color3.fromRGB(136, 192, 208), -- Azul Glacial do Tema Nord
+        Font = Enum.Font.GothamBold,
+        TextXAlignment = "Left",
+        BackgroundTransparency = 1,
+        TextSize = 10,
+        Text = Invite
+    })
+    
+    -- Card do Invite
+    local FrameHolder = InsertTheme(Create("Frame", InviteHolder, {
+        Size = UDim2.new(1, 0, 0, 68),
+        AnchorPoint = Vector2.new(0, 1),
+        Position = UDim2.new(0, 0, 1),
+        BackgroundColor3 = Theme["Color Hub 2"]
+    }), "Frame")
+    Make("Corner", FrameHolder, UDim.new(0, 6))
+    
+    -- Imagem/Ícone do Servidor
+    local ImageLabel = Create("ImageLabel", FrameHolder, {
+        Size = UDim2.new(0, 34, 0, 34),
+        Position = UDim2.new(0, 8, 0, 8),
+        Image = Logo,
+        BackgroundTransparency = 1
+    })
+    Make("Corner", ImageLabel, UDim.new(0, 6))
+    Make("Stroke", ImageLabel)
+    
+    -- Título do Servidor
+    local LTitle = InsertTheme(Create("TextLabel", FrameHolder, {
+        Size = UDim2.new(1, -140, 0, 15), -- Ajustado tamanho para não bater no botão
+        Position = UDim2.new(0, 50, 0, 8),
+        Font = Enum.Font.GothamBold,
+        TextColor3 = Theme["Color Text"],
+        TextXAlignment = "Left",
+        BackgroundTransparency = 1,
+        TextSize = 11,
+        Text = Title
+    }), "Text")
+    
+    -- Descrição do Servidor
+    local LDesc = InsertTheme(Create("TextLabel", FrameHolder, {
+        Size = UDim2.new(1, -140, 0, 24),
+        Position = UDim2.new(0, 50, 0, 23),
+        TextWrapped = true,
+        Font = Enum.Font.Gotham,
+        TextColor3 = Theme["Color Dark Text"],
+        TextXAlignment = "Left",
+        BackgroundTransparency = 1,
+        TextSize = 9,
+        Text = Desc
+    }), "DarkText")
+    
+    -- Botão Estilo Discord Blurple Premium
+    local JoinButton = Create("TextButton", FrameHolder, {
+        Size = UDim2.new(0, 100, 0, 28),
+        AnchorPoint = Vector2.new(1, 0.5),
+        Position = UDim2.new(1, -10, 0.5, 0), -- Centralizado na direita horizontalmente
+        Text = "Join Server",
+        Font = Enum.Font.GothamBold,
+        TextSize = 11,
+        TextColor3 = Color3.fromRGB(255, 255, 255),
+        BackgroundColor3 = Color3.fromRGB(88, 101, 242) -- Cor Blurple oficial do Discord
+    })
+    Make("Corner", JoinButton, UDim.new(0, 5))
+    
+    -- Configuração de Animação (Tweens)
+    local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    
+    local ClickDelay = false
+    JoinButton.Activated:Connect(function()
+        if ClickDelay then return end
+        ClickDelay = true
+        
+        -- Copia de forma segura para a área de transferência
+        pcall(function()
+            if setclipboard then
+                setclipboard(Invite)
+            end
+        end)
+        
+        -- Animação de Sucesso (Transição para Cinza)
+        TweenService:Create(JoinButton, tweenInfo, {
+            BackgroundColor3 = Color3.fromRGB(76, 86, 106), -- Cinza Escuro Nord
+            TextColor3 = Color3.fromRGB(216, 222, 233)
+        }):Play()
+        JoinButton.Text = "Copied link!"
+        
+        task.wait(3.5) -- Reduzido tempo de espera de 5s para 3.5s (Mais dinâmico)
+        
+        -- Animação de Retorno à cor original
+        TweenService:Create(JoinButton, tweenInfo, {
+            BackgroundColor3 = Color3.fromRGB(88, 101, 242),
+            TextColor3 = Color3.fromRGB(255, 255, 255)
+        }):Play()
+        JoinButton.Text = "Join Server"
+        
+        ClickDelay = false
+    end)
+    
+    local DiscordInvite = {}
+    function DiscordInvite:Destroy() InviteHolder:Destroy() end
+    function DiscordInvite:Visible(...) Funcs:ToggleVisible(InviteHolder, ...) end
+    return DiscordInvite
+end
 		return Tab
 	end
 	
