@@ -2630,53 +2630,57 @@ function redzlib:MakeWindow(Configs)
     }), "Frame")
     Make("Corner", FrameHolder, UDim.new(0, 6))
     
-    -- Imagem/Ícone do Servidor
-    local ImageLabel = Create("ImageLabel", FrameHolder, {
-        Size = UDim2.new(0, 34, 0, 34),
-        Position = UDim2.new(0, 8, 0, 8),
-        Image = Logo,
-        BackgroundTransparency = 1
-    })
-    Make("Corner", ImageLabel, UDim.new(0, 6))
-    Make("Stroke", ImageLabel)
-    
-    -- Título do Servidor
-    local LTitle = InsertTheme(Create("TextLabel", FrameHolder, {
-        Size = UDim2.new(1, -140, 0, 15), -- Ajustado tamanho para não bater no botão
-        Position = UDim2.new(0, 50, 0, 8),
-        Font = Enum.Font.GothamBold,
-        TextColor3 = Theme["Color Text"],
-        TextXAlignment = "Left",
-        BackgroundTransparency = 1,
-        TextSize = 11,
-        Text = Title
-    }), "Text")
-    
-    -- Descrição do Servidor
-    local LDesc = InsertTheme(Create("TextLabel", FrameHolder, {
-        Size = UDim2.new(1, -140, 0, 24),
-        Position = UDim2.new(0, 50, 0, 23),
-        TextWrapped = true,
-        Font = Enum.Font.Gotham,
-        TextColor3 = Theme["Color Dark Text"],
-        TextXAlignment = "Left",
-        BackgroundTransparency = 1,
-        TextSize = 9,
-        Text = Desc
-    }), "DarkText")
-    
-    -- Botão Estilo Discord Blurple Premium
-    local JoinButton = Create("TextButton", FrameHolder, {
-        Size = UDim2.new(0, 100, 0, 28),
-        AnchorPoint = Vector2.new(1, 0.5),
-        Position = UDim2.new(1, -10, 0.5, 0), -- Centralizado na direita horizontalmente
-        Text = "Join Server",
-        Font = Enum.Font.GothamBold,
-        TextSize = 11,
-        TextColor3 = Color3.fromRGB(255, 255, 255),
-        BackgroundColor3 = Color3.fromRGB(88, 101, 242) -- Cor Blurple oficial do Discord
-    })
-    Make("Corner", JoinButton, UDim.new(0, 5))
+    -- Altere apenas essa parte dos elementos internos na sua função para aplicar o ajuste fino:
+
+	-- Imagem/Ícone do Servidor (Movido levemente para a esquerda e centralizado melhor)
+	local ImageLabel = Create("ImageLabel", FrameHolder, {
+		Size = UDim2.new(0, 36, 0, 36),
+		Position = UDim2.new(0, 10, 0.5, 0),
+		AnchorPoint = Vector2.new(0, 0.5), -- Garante centralização vertical perfeita
+		Image = Logo,
+		BackgroundTransparency = 1
+	})
+	Make("Corner", ImageLabel, UDim.new(0, 6))
+	Make("Stroke", ImageLabel)
+	
+	-- Título do Servidor (Afastado do ícone para dar espaço e respirar)
+	local LTitle = InsertTheme(Create("TextLabel", FrameHolder, {
+		Size = UDim2.new(1, -165, 0, 15), 
+		Position = UDim2.new(0, 56, 0, 12), -- X movido de 50 para 56
+		Font = Enum.Font.GothamBold,
+		TextColor3 = Theme["Color Text"],
+		TextXAlignment = "Left",
+		BackgroundTransparency = 1,
+		TextSize = 11,
+		Text = Title
+	}), "Text")
+	
+	-- Descrição do Servidor (Afastado do ícone acompanhando o título)
+	local LDesc = InsertTheme(Create("TextLabel", FrameHolder, {
+		Size = UDim2.new(1, -165, 0, 15),
+		Position = UDim2.new(0, 56, 0, 27), -- X movido de 50 para 56
+		TextWrapped = true,
+		Font = Enum.Font.Gotham,
+		TextColor3 = Theme["Color Dark Text"],
+		TextXAlignment = "Left",
+		BackgroundTransparency = 1,
+		TextSize = 9,
+		Text = Desc
+	}), "DarkText")
+	
+	-- Botão Estilo Discord Blurple (Reduzido levemente na largura para telas mobile)
+	local JoinButton = Create("TextButton", FrameHolder, {
+		Size = UDim2.new(0, 85, 0, 26), -- Largura reduzida de 100 para 85 para dar mais espaço ao texto
+		AnchorPoint = Vector2.new(1, 0.5),
+		Position = UDim2.new(1, -10, 0.5, 0), 
+		Text = "Join Server",
+		Font = Enum.Font.GothamBold,
+		TextSize = 10, -- Fonte levemente menor para caber na largura nova
+		TextColor3 = Color3.fromRGB(255, 255, 255),
+		BackgroundColor3 = Color3.fromRGB(88, 101, 242) 
+	})
+	Make("Corner", JoinButton, UDim.new(0, 6))
+
     
     -- Configuração de Animação (Tweens)
     local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
