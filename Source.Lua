@@ -2595,132 +2595,100 @@ function redzlib:MakeWindow(Configs)
 			return TextBox
 		end
 		function Tab:AddDiscordInvite(Configs)
-    local TweenService = game:GetService("TweenService")
-    
-    local Title = Configs[1] or Configs.Name or Configs.Title or "Discord Server"
-    local Desc = Configs.Desc or Configs.Description or "Join our community to get updates!"
-    local Logo = Configs[2] or Configs.Logo or "rbxassetid://15243132148" -- ID Padrão do Logo do Discord se faltar
-    local Invite = Configs[3] or Configs.Invite or "https://discord.gg/vensehub"
-    
-    -- Holder Principal
-    local InviteHolder = Create("Frame", Container, {
-        Size = UDim2.new(1, 0, 0, 85), -- Aumentado levemente para respirar o layout
-        Name = "DiscordInviteOption",
-        BackgroundTransparency = 1
-    })
-    
-    -- Texto com o Link do Invite no topo (Cor Glacial Nord)
-    local InviteLabel = Create("TextLabel", InviteHolder, {
-        Size = UDim2.new(1, 0, 0, 15),
-        Position = UDim2.new(0, 5, 0, 0),
-        TextColor3 = Color3.fromRGB(136, 192, 208), -- Azul Glacial do Tema Nord
-        Font = Enum.Font.GothamBold,
-        TextXAlignment = "Left",
-        BackgroundTransparency = 1,
-        TextSize = 10,
-        Text = Invite
-    })
-    
-    -- Card do Invite
-    local FrameHolder = InsertTheme(Create("Frame", InviteHolder, {
-        Size = UDim2.new(1, 0, 0, 68),
-        AnchorPoint = Vector2.new(0, 1),
-        Position = UDim2.new(0, 0, 1),
-        BackgroundColor3 = Theme["Color Hub 2"]
-    }), "Frame")
-    Make("Corner", FrameHolder, UDim.new(0, 6))
-    
-    -- Altere apenas essa parte dos elementos internos na sua função para aplicar o ajuste fino:
-
-	-- Imagem/Ícone do Servidor (Movido levemente para a esquerda e centralizado melhor)
-	local ImageLabel = Create("ImageLabel", FrameHolder, {
-		Size = UDim2.new(0, 36, 0, 36),
-		Position = UDim2.new(0, 10, 0.5, 0),
-		AnchorPoint = Vector2.new(0, 0.5), -- Garante centralização vertical perfeita
-		Image = Logo,
-		BackgroundTransparency = 1
-	})
-	Make("Corner", ImageLabel, UDim.new(0, 6))
-	Make("Stroke", ImageLabel)
-	
-	-- Título do Servidor (Afastado do ícone para dar espaço e respirar)
-	local LTitle = InsertTheme(Create("TextLabel", FrameHolder, {
-		Size = UDim2.new(1, -165, 0, 15), 
-		Position = UDim2.new(0, 56, 0, 12), -- X movido de 50 para 56
-		Font = Enum.Font.GothamBold,
-		TextColor3 = Theme["Color Text"],
-		TextXAlignment = "Left",
-		BackgroundTransparency = 1,
-		TextSize = 11,
-		Text = Title
-	}), "Text")
-	
-	-- Descrição do Servidor (Afastado do ícone acompanhando o título)
-	local LDesc = InsertTheme(Create("TextLabel", FrameHolder, {
-		Size = UDim2.new(1, -165, 0, 15),
-		Position = UDim2.new(0, 56, 0, 27), -- X movido de 50 para 56
-		TextWrapped = true,
-		Font = Enum.Font.Gotham,
-		TextColor3 = Theme["Color Dark Text"],
-		TextXAlignment = "Left",
-		BackgroundTransparency = 1,
-		TextSize = 9,
-		Text = Desc
-	}), "DarkText")
-	
-	-- Botão Estilo Discord Blurple (Reduzido levemente na largura para telas mobile)
-	local JoinButton = Create("TextButton", FrameHolder, {
-		Size = UDim2.new(0, 85, 0, 26), -- Largura reduzida de 100 para 85 para dar mais espaço ao texto
-		AnchorPoint = Vector2.new(1, 0.5),
-		Position = UDim2.new(1, -10, 0.5, 0), 
-		Text = "Join Server",
-		Font = Enum.Font.GothamBold,
-		TextSize = 10, -- Fonte levemente menor para caber na largura nova
-		TextColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundColor3 = Color3.fromRGB(88, 101, 242) 
-	})
-	Make("Corner", JoinButton, UDim.new(0, 6))
-
-    
-    -- Configuração de Animação (Tweens)
-    local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-    
-    local ClickDelay = false
-    JoinButton.Activated:Connect(function()
-        if ClickDelay then return end
-        ClickDelay = true
-        
-        -- Copia de forma segura para a área de transferência
-        pcall(function()
-            if setclipboard then
-                setclipboard(Invite)
-            end
-        end)
-        
-        -- Animação de Sucesso (Transição para Cinza)
-        TweenService:Create(JoinButton, tweenInfo, {
-            BackgroundColor3 = Color3.fromRGB(76, 86, 106), -- Cinza Escuro Nord
-            TextColor3 = Color3.fromRGB(216, 222, 233)
-        }):Play()
-        JoinButton.Text = "Copied link!"
-        
-        task.wait(3.5) -- Reduzido tempo de espera de 5s para 3.5s (Mais dinâmico)
-        
-        -- Animação de Retorno à cor original
-        TweenService:Create(JoinButton, tweenInfo, {
-            BackgroundColor3 = Color3.fromRGB(88, 101, 242),
-            TextColor3 = Color3.fromRGB(255, 255, 255)
-        }):Play()
-        JoinButton.Text = "Join Server"
-        
-        ClickDelay = false
-    end)
-    
-    local DiscordInvite = {}
-    function DiscordInvite:Destroy() InviteHolder:Destroy() end
-    function DiscordInvite:Visible(...) Funcs:ToggleVisible(InviteHolder, ...) end
-    return DiscordInvite
-end
+			local Title = Configs[1] or Configs.Name or Configs.Title or "Discord"
+			local Desc = Configs.Desc or Configs.Description or ""
+			local Logo = Configs[2] or Configs.Logo or ""
+			local Invite = Configs[3] or Configs.Invite or ""
+			
+			local InviteHolder = Create("Frame", Container, {
+				Size = UDim2.new(1, 0, 0, 80),
+				Name = "Option",
+				BackgroundTransparency = 1
+			})
+			
+			local InviteLabel = Create("TextLabel", InviteHolder, {
+				Size = UDim2.new(1, 0, 0, 15),
+				Position = UDim2.new(0, 5),
+				TextColor3 = Color3.fromRGB(40, 150, 255),
+				Font = Enum.Font.GothamBold,
+				TextXAlignment = "Left",
+				BackgroundTransparency = 1,
+				TextSize = 10,
+				Text = Invite
+			})
+			
+			local FrameHolder = InsertTheme(Create("Frame", InviteHolder, {
+				Size = UDim2.new(1, 0, 0, 65),
+				AnchorPoint = Vector2.new(0, 1),
+				Position = UDim2.new(0, 0, 1),
+				BackgroundColor3 = Theme["Color Hub 2"]
+			}), "Frame")Make("Corner", FrameHolder)
+			
+			local ImageLabel = Create("ImageLabel", FrameHolder, {
+				Size = UDim2.new(0, 30, 0, 30),
+				Position = UDim2.new(0, 7, 0, 7),
+				Image = Logo,
+				BackgroundTransparency = 1
+			})Make("Corner", ImageLabel, UDim.new(0, 4))Make("Stroke", ImageLabel)
+			
+			local LTitle = InsertTheme(Create("TextLabel", FrameHolder, {
+				Size = UDim2.new(1, -52, 0, 15),
+				Position = UDim2.new(0, 44, 0, 7),
+				Font = Enum.Font.GothamBold,
+				TextColor3 = Theme["Color Text"],
+				TextXAlignment = "Left",
+				BackgroundTransparency = 1,
+				TextSize = 10,
+				Text = Title
+			}), "Text")
+			
+			local LDesc = InsertTheme(Create("TextLabel", FrameHolder, {
+				Size = UDim2.new(1, -52, 0, 0),
+				Position = UDim2.new(0, 44, 0, 22),
+				TextWrapped = "Y",
+				AutomaticSize = "Y",
+				Font = Enum.Font.Gotham,
+				TextColor3 = Theme["Color Dark Text"],
+				TextXAlignment = "Left",
+				BackgroundTransparency = 1,
+				TextSize = 8,
+				Text = Desc
+			}), "DarkText")
+			
+			local JoinButton = Create("TextButton", FrameHolder, {
+				Size = UDim2.new(1, -14, 0, 16),
+				AnchorPoint = Vector2.new(0.5, 1),
+				Position = UDim2.new(0.5, 0, 1, -7),
+				Text = "Join Discord Server",
+				Font = Enum.Font.GothamBold,
+				TextSize = 12,
+				TextColor3 = Color3.fromRGB(220, 220, 220),
+				BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+			})Make("Corner", JoinButton, UDim.new(0, 5))
+			
+			local ClickDelay
+			JoinButton.Activated:Connect(function()
+				setclipboard(Invite)
+				if ClickDelay then return end
+				
+				ClickDelay = true
+				SetProps(JoinButton, {
+					Text = "Copied to Clipboard!",
+					BackgroundColor3 = Color3.fromRGB(100, 100, 100),
+					TextColor3 = Color3.fromRGB(150, 150, 150)
+				})task.wait(5)
+				SetProps(JoinButton, {
+					Text = "Join Discord Server",
+					BackgroundColor3 = Color3.fromRGB(88, 101, 242),
+					TextColor3 = Color3.fromRGB(220, 220, 220)
+				})ClickDelay = false
+			end)
+			
+			local DiscordInvite = {}
+			function DiscordInvite:Destroy() InviteHolder:Destroy() end
+			function DiscordInvite:Visible(...) Funcs:ToggleVisible(InviteHolder, ...) end
+			return DiscordInvite
+		end
 		return Tab
 	end
 	
