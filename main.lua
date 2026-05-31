@@ -27,6 +27,18 @@ local redzlib = {
     ["Color Dark Text"] = Color3.fromRGB(150, 135, 160)                  -- Texto Escuro
 },
 
+		Vense Neon = {
+    ["Color Hub 1"] = ColorSequence.new({
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(5, 5, 8)),        -- Preto Quase Invisível (Toque Azulado)
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(24, 24, 30)),     -- Cinza Escuro Premium (Centro)
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(5, 5, 8))         -- Borda Direita
+    }),
+    ["Color Hub 2"] = Color3.fromRGB(14, 14, 18),                        -- Fundo dos Elementos/Abas
+    ["Color Stroke"] = Color3.fromRGB(45, 45, 55),                       -- Linhas de Borda (Suaves)
+    ["Color Theme"] = Color3.fromRGB(0, 229, 255),                       -- Ciano Neon Brilhante (Destaque)
+    ["Color Text"] = Color3.fromRGB(245, 247, 250),                      -- Texto Principal (Branco Limpo)
+    ["Color Dark Text"] = Color3.fromRGB(140, 145, 160)                  -- Texto Secundário / Descrições
+},
 		
 		Purple = {
 			["Color Hub 1"] = ColorSequence.new({
@@ -47,7 +59,7 @@ local redzlib = {
 	Save = {
 		UISize = {479,241},
 		TabSize = 160,
-		Theme = "Darkerthyst"
+		Theme = "Vense Neon"
 	},
 	Settings = {},
 	Connection = {},
@@ -1197,7 +1209,7 @@ end
 
 AddEle("Corner", function(parent, CornerRadius)
 	local New = SetProps(Create("UICorner", parent, {
-		CornerRadius = CornerRadius or UDim.new(0, 5)
+		CornerRadius = CornerRadius or UDim.new(0, 8)
 	}), props)
 	return New
 end)
