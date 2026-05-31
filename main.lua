@@ -27,7 +27,7 @@ local redzlib = {
     ["Color Dark Text"] = Color3.fromRGB(150, 135, 160)                  -- Texto Escuro
 },
 
-		Vense Neon = {
+		VenseNeon = {
     ["Color Hub 1"] = ColorSequence.new({
         ColorSequenceKeypoint.new(0.00, Color3.fromRGB(5, 5, 8)),        -- Preto Quase Invisível (Toque Azulado)
         ColorSequenceKeypoint.new(0.50, Color3.fromRGB(24, 24, 30)),     -- Cinza Escuro Premium (Centro)
@@ -59,7 +59,7 @@ local redzlib = {
 	Save = {
 		UISize = {479,241},
 		TabSize = 160,
-		Theme = "Vense Neon"
+		Theme = "VenseNeon"
 	},
 	Settings = {},
 	Connection = {},
